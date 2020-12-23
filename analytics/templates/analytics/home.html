@@ -13,7 +13,10 @@
         <small class="text-muted">{{ reading.date|date:"F d, Y" }}</small>
         </div>
         <h4 class="article-title" > Temperature : {{ reading.temperature }} F</h4>
-        <p class="article-content">Oxygen Level: {{ reading.spo2 }}%</p> 
+        <p class="article-content">Oxygen Level: {{ reading.spo2 }}%</p>
+        <p class="article-content">Pulse Rate: {{ reading.pulse_rate }} beats/sec</p>
+        <p class="article-content">Mask Verification: {{ reading.mask_verified }}</p>
+        <p class="article-content">Identity Verification: {{ reading.identity_verfied }}</p> 
       </div>
     </article>
   {% endfor %}

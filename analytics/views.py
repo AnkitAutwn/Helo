@@ -17,6 +17,6 @@ def home(request):
     else:
         context['readings'] = reading.objects.filter(user = request.user).order_by('-date')
     context['title'] = 'Home'
-    return render(request,'analytics/home.html',context)
+    return render(request,'analytics/index.html',context)
 
 

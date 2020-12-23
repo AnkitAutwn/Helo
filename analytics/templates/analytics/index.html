@@ -1,0 +1,111 @@
+{% extends 'analytics/base.html'%}
+{% block content %}
+{% load static%}
+
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->	
+	<link rel="icon" type="image/png" href="{% static 'analytics/images/icons/favicon.ico' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/bootstrap/css/bootstrap.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/animate/animate.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/select2/select2.min.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/util.css' %}">
+	<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/main.css' %}">
+<!--===============================================================================================-->
+
+	
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+					<div class="table">
+
+						<div class="row header">
+							<div class="cell">
+								Name
+							</div>
+							<div class="cell">
+								Date
+							</div>
+							<div class="cell">
+								Temperature
+							</div>
+							<div class="cell">
+								Oxygen Level
+							</div>
+							<div class="cell">
+								Pulse Rate
+							</div>
+							<div class="cell">
+								Mask Verified
+							</div>
+							<div class="cell">
+								Identity Verified
+							</div>
+						</div>
+
+
+					{% for reading in readings%}
+						<div class="row">
+
+							<div class="cell" data-title="Full Name">
+							{% if user.is_superuser %}
+								{{ reading.user.username }}
+							{% else %}
+								{{ reading.user.username }}
+							{% endif %}
+							</div>
+
+							<div class="cell" data-title="Date">
+								{{ reading.date|date:"F d, Y" }}		
+							</div>
+
+							<div class="cell" data-title="Temperature">	
+								{{reading.temperature}} F	
+							</div>
+
+							<div class="cell" data-title="Oxygen Level">
+								{{reading.spo2}}%		
+							</div>
+
+							<div class="cell" data-title="Pulse Rate">
+								{{reading.pulse_rate}} beats/sec		
+							</div>
+
+							<div class="cell" data-title="Mask Verified">
+								{{reading.mask_verified}}		
+							</div>
+
+							<div class="cell" data-title="Identity Verified">		
+								{{reading.identity_verfied}}
+							</div>
+
+						</div>
+					{% endfor %}
+
+					</div>
+			</div>
+		</div>
+	</div>
+
+
+	
+
+<!--===============================================================================================-->	
+	<script  src="{% static 'analytics/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'analytics/vendor/bootstrap/js/popper.js' %}"></script>
+	<script src="{% static 'analytics/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'analytics/vendor/select2/select2.min.js' %}"></script>
+<!--===============================================================================================-->
+	<script src="{% static 'analytics/js/main.js' %}"></script>
+
+{% endblock content %}

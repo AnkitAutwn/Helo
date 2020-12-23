@@ -8,3 +8,6 @@ class reading(models.Model):
     date = models.DateTimeField(default= timezone.now)
     temperature = models.DecimalField(decimal_places=2, default=8, max_digits=5)
     spo2 = models.DecimalField(decimal_places=2, default=8, max_digits=4)
+    pulse_rate = models.DecimalField(decimal_places=2, default=8, max_digits=4)
+    mask_verified = models.BooleanField(default=False)
+    identity_verfied = models.BooleanField(default=False)

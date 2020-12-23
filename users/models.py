@@ -8,6 +8,16 @@ class Profile(models.Model):
     user = models.OneToOneField(User , on_delete = models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to = 'profilepics')
     governmentID = models.ImageField(default = 'default.jpg', upload_to = 'governmentids')
+    Image1 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image2 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image3 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image4 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image5 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image6 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image7 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image8 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image9 = models.ImageField(upload_to = 'people_faces',null=True)
+    Image10 = models.ImageField(upload_to = 'people_faces',null=True)
     
     def __str__(self):
         return f'{self.user.username} Profile'
