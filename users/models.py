@@ -7,6 +7,8 @@ from django.utils import timezone
 class Profile(models.Model):
     user = models.OneToOneField(User , on_delete = models.CASCADE)
     image = models.ImageField(default = 'default.jpg', upload_to = 'profilepics')
+    Contact = models.DecimalField(decimal_places = 0 ,max_digits=10,default=0)
+    Address = models.TextField(default="")
     governmentID = models.ImageField(default = 'default.jpg', upload_to = 'governmentids')
     Image1 = models.ImageField(upload_to = 'people_faces',null=True)
     Image2 = models.ImageField(upload_to = 'people_faces',null=True)
