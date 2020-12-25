@@ -1,108 +1,214 @@
-{% extends 'analytics/base.html'%}
-{% block content %}
 {% load static%}
+<html>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="{% static 'analytics/main.css' %}">
+        {% if title%}
+        <title>Helo - {{title}}</title>
+        {%else%}
+        <title>Helo</title>
+		{%endif%}
+		
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<!--===============================================================================================-->	
-	<link rel="icon" type="image/png" href="{% static 'analytics/images/icons/favicon.ico' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/bootstrap/css/bootstrap.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/animate/animate.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/select2/select2.min.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
-<!--===============================================================================================-->
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/util.css' %}">
-	<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/main.css' %}">
-<!--===============================================================================================-->
+	<!--===============================================================================================-->	
+		<link rel="icon" type="image/png" href="{% static 'analytics/images/icons/favicon.ico' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/bootstrap/css/bootstrap.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/fonts/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/animate/animate.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/select2/select2.min.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/vendor/perfect-scrollbar/perfect-scrollbar.css' %}">
+	<!--===============================================================================================-->
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/util.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'analytics/css/main2.css' %}">
+	<!--===============================================================================================-->
 
 	
-	<div class="limiter">
-		<div class="container-table100">
-			<div class="wrap-table100">
-					<div class="table">
+    </head>
+    <body>
+        <header class="site-header">
+            <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+              <div class="container">
+                <a class="navbar-brand mr-4" href="{% url 'analytics-home' %}">Dashboard</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                  <div class="navbar-nav mr-auto">
+                    <a class="nav-item nav-link" href="{% url 'analytics-home' %}">Home</a>
+                    <a class="nav-item nav-link" href="{% url 'analytics-about' %}">About</a>
+                  </div>
+                  <!-- Navbar Right Side -->
+                  <div class="navbar-nav">
+                    {% if user.is_authenticated %}
+                      <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+                      <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                    {% else %}
+                      <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+                      <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+                    {% endif%}
+                  </div>
+                </div>
+              </div>
+            </nav>
+          </header>
 
-						<div class="row header">
-							<div class="cell">
-								Name
+        <main role="main" class="container">
+        <div class="row"></div>
+            <div class="col-md">
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class = "alert alert-{{message.tags}}">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% block content %}{% endblock %}
+            </div>
+        </div>
+		</main>
+		
+		<div class="limiter">
+			<div class="container-table100">
+				
+				<div class="wrap-table100">
+						<div class="table">	
+	
+							<div class="row header">
+								<div class="cell">
+									Name
+								</div>
+								<div class="cell">
+									Date
+								</div>
+								<div class="cell">
+									Time Stamp
+								</div>
+								<div class="cell">
+									Temperature
+								</div>
+								<div class="cell">
+									Oxygen Level
+								</div>
+								<div class="cell">
+									Pulse Rate
+								</div>
+								<div class="cell">
+									Mask Verified
+								</div>
+								<div class="cell">
+									Identity Verified
+								</div>
 							</div>
-							<div class="cell">
-								Date
+	
+	
+						{% for reading in readings%}
+							
+							<div class="row">
+								
+								<div class="cell" data-title="Full Name">
+								{% if user.is_superuser %}
+								<a href="{% url 'user-readings' reading.user.username %}">
+									{{ reading.user.username }}
+								</a>
+								{% else %}
+									{{ reading.user.username }}
+								{% endif %}
+								
+								</div>
+	
+								<div class="cell" data-title="Date">
+									{{ reading.date|date:"j/m/Y" }}		
+								</div>
+
+								<div class="cell" data-title="Time Stamp">
+									{{ reading.date|date:"f a" }}		
+								</div>
+	
+								<div class="cell" data-title="Temperature">	
+									{{reading.temperature}} F	
+								</div>
+	
+								<div class="cell" data-title="Oxygen Level">
+									{{reading.spo2}}%		
+								</div>
+	
+								<div class="cell" data-title="Pulse Rate">
+									{{reading.pulse_rate}} beats/sec		
+								</div>
+	
+								<div class="cell" data-title="Mask Verified">
+									{{reading.mask_verified}}		
+								</div>
+	
+								<div class="cell" data-title="Identity Verified">		
+									{{reading.identity_verfied}}
+								</div>
+								
 							</div>
-							<div class="cell">
-								Temperature
-							</div>
-							<div class="cell">
-								Oxygen Level
-							</div>
-							<div class="cell">
-								Pulse Rate
-							</div>
-							<div class="cell">
-								Mask Verified
-							</div>
-							<div class="cell">
-								Identity Verified
-							</div>
+							
+						{% endfor %}
+
+
+	
 						</div>
+				</div>
+				{% if is_paginated %}
+    
+					{% if page_obj.has_previous %}
+					<a class="btn btn-outline-info mb-4" href = "?page=1">First</a>
+					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.previous_page_number }}">Previous</a>
+					{% endif %}
 
-
-					{% for reading in readings%}
-						<div class="row">
-
-							<div class="cell" data-title="Full Name">
-							{% if user.is_superuser %}
-								{{ reading.user.username }}
-							{% else %}
-								{{ reading.user.username }}
-							{% endif %}
-							</div>
-
-							<div class="cell" data-title="Date">
-								{{ reading.date|date:"F d, Y" }}		
-							</div>
-
-							<div class="cell" data-title="Temperature">	
-								{{reading.temperature}} F	
-							</div>
-
-							<div class="cell" data-title="Oxygen Level">
-								{{reading.spo2}}%		
-							</div>
-
-							<div class="cell" data-title="Pulse Rate">
-								{{reading.pulse_rate}} beats/sec		
-							</div>
-
-							<div class="cell" data-title="Mask Verified">
-								{{reading.mask_verified}}		
-							</div>
-
-							<div class="cell" data-title="Identity Verified">		
-								{{reading.identity_verfied}}
-							</div>
-
-						</div>
+					{% for num in page_obj.paginator.page_range %}
+					{% if page_obj.number == num%}
+						<a class="btn btn-info mb-4" href = "?page={{ num }}">{{ num }}</a>
+					{% elif num > page_obj.number|add:'-3' and num < page_obj.number|add:'+3' %}
+						<a class="btn btn-outline-info mb-4" href = "?page={{ num }}">{{ num }}</a>
+					{% endif %}
 					{% endfor %}
 
-					</div>
+					{% if page_obj.has_next %}
+					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.next_page_number}}">Next</a>
+					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.paginator.num_pages }}">Last</a>
+					{% endif %}
+
+				{% endif %}
+
 			</div>
 		</div>
-	</div>
+
+        <!-- Optional JavaScript -->
+		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+		<script  src="{% static 'analytics/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="{% static 'analytics/vendor/bootstrap/js/popper.js' %}"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+		<script src="{% static 'analytics/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+		<script src="{% static 'analytics/vendor/select2/select2.min.js' %}"></script>
+		<script src="{% static 'analytics/js/main.js' %}"></script>
+
+	</body>
+</html>
+
+
 
 <!--===============================================================================================-->	
-	<script  src="{% static 'analytics/vendor/jquery/jquery-3.2.1.min.js' %}"></script>
+	
 <!--===============================================================================================-->
-	<script src="{% static 'analytics/vendor/bootstrap/js/popper.js' %}"></script>
-	<script src="{% static 'analytics/vendor/bootstrap/js/bootstrap.min.js' %}"></script>
+	
+	
 <!--===============================================================================================-->
-	<script src="{% static 'analytics/vendor/select2/select2.min.js' %}"></script>
+	
 <!--===============================================================================================-->
-	<script src="{% static 'analytics/js/main.js' %}"></script>
+	
 
-{% endblock content %}

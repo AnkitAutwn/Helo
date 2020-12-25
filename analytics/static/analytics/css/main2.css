@@ -14,8 +14,7 @@
   src: url('../fonts/poppins/Poppins-Bold.ttf'); 
 }
 
-/*//////////////////////////////////////////////////////////////////
-[ RESTYLE TAG ]*/
+
 * {
 	margin: 0px; 
 	padding: 0px; 
@@ -23,11 +22,12 @@
 }
 
 body, html {
-	height: 100%;
+  height: 100%;
 	font-family: sans-serif;
 }
 
-/* ------------------------------------ */
+
+
 a {
 	margin: 0px;
 	transition: all 0.4s;
@@ -112,7 +112,7 @@ iframe {
 }
 
 .wrap-table100 {
-  width: 960px;
+  width: 1520px;
   border-radius: 10px;
   overflow: hidden;
 }
@@ -136,7 +136,7 @@ iframe {
 
 .row.header {
   color: #ffffff;
-  background: #6c7ae0;
+  background: #6c7ae0; /*#6c7ae0;*/
 }
 
 @media screen and (max-width: 768px) {
@@ -202,21 +202,39 @@ iframe {
 }
 
 .row .cell:nth-child(1) {
-  width: 360px;
+  width: 190px;
   padding-left: 40px;
 }
 
 .row .cell:nth-child(2) {
-  width: 160px;
+  width: 190px;
 }
 
 .row .cell:nth-child(3) {
-  width: 250px;
+  width: 190px;
 }
 
 .row .cell:nth-child(4) {
   width: 190px;
 }
+
+.row .cell:nth-child(5) {
+  width: 190px;
+}
+
+.row .cell:nth-child(6) {
+  width: 190px;
+}
+
+.row .cell:nth-child(7) {
+  width: 190px;
+}
+
+.row .cell:nth-child(7) {
+  width: 190px;
+}
+
+
 
 
 .table, .row {
@@ -259,3 +277,4 @@ iframe {
     width: 100% !important;
   }
 }
+

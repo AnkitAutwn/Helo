@@ -3,7 +3,8 @@ from . import views
 from .views import *
 
 urlpatterns = [
-    path('', views.home , name = 'analytics-home'),
-    path('about/', views.about , name = 'analytics-about')
+    path('',  Readings.as_view() , name = 'analytics-home'),
+    path('about/', views.about , name = 'analytics-about'),
+    path('user/<str:username>', UserReadingView.as_view() , name = 'user-readings'),
 ]
 

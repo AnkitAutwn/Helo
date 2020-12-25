@@ -10,7 +10,7 @@
             {% else %}
                 <a class="mr-2" >{{ reading.user.username }}</a>
             {% endif %}
-        <small class="text-muted">{{ reading.date|date:"F d, Y" }}</small>
+        <small class="text-muted">{{ reading.dates|date:"j/m/Y" }}</small>
         </div>
         <h4 class="article-title" > Temperature : {{ reading.temperature }} F</h4>
         <p class="article-content">Oxygen Level: {{ reading.spo2 }}%</p>
