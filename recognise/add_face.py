@@ -29,9 +29,8 @@ for (i, imagePath) in enumerate(imagePaths):
 	encodings = face_recognition.face_encodings(rgb, boxes)
 
 	for encoding in encodings:
-		if encoding not in knownEncodings:
-			knownEncodings.append(encoding)
-			knownNames.append(name)
+		knownEncodings.append(encoding)
+		knownNames.append(name)
 
 
 print("[INFO] serializing encodings...")
