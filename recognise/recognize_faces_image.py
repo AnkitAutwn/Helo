@@ -5,7 +5,7 @@ import cv2
 
 
 def recognize(testimg):
-	with open(r'encodings.pickle','rb') as input:
+	with open(r'recognise\encodings.pickle','rb') as input:
 		data = pickle.load(input)
 
 	image = testimg
