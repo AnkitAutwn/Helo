@@ -34,8 +34,10 @@
 	<!--===============================================================================================-->
 
 	
+	
     </head>
     <body>
+
         <header class="site-header">
             <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
               <div class="container">
@@ -46,13 +48,14 @@
                 <div class="collapse navbar-collapse" id="navbarToggle">
                   <div class="navbar-nav mr-auto">
                     <a class="nav-item nav-link" href="{% url 'analytics-home' %}">Home</a>
-                    <a class="nav-item nav-link" href="{% url 'analytics-about' %}">About</a>
+					<a class="nav-item nav-link" href="{% url 'analytics-about' %}">About</a>
+					<a class="nav-item nav-link" href="{% url 'default' %}">Face Test</a>
                   </div>
                   <!-- Navbar Right Side -->
                   <div class="navbar-nav">
-                    {% if user.is_authenticated %}
-                      <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                      <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+					{% if user.is_authenticated %}
+						<a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
+					  	<a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
                     {% else %}
                       <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
                       <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
@@ -62,7 +65,7 @@
               </div>
             </nav>
           </header>
-
+		 
         <main role="main" class="container">
         <div class="row"></div>
             <div class="col-md">
@@ -77,9 +80,11 @@
 		</main>
 		
 		<div class="limiter">
+			
 			<div class="container-table100">
 				
 				<div class="wrap-table100">
+					
 						<div class="table">	
 	
 							<div class="row header">
@@ -115,7 +120,7 @@
 							<div class="row">
 								
 								<div class="cell" data-title="Full Name">
-								{% if user.is_superuser %}
+								{% if user.is_superuser or user.is_staff %}
 								<a href="{% url 'user-readings' reading.user.username %}">
 									{{ reading.user.username }}
 								</a>
@@ -157,12 +162,11 @@
 							
 						{% endfor %}
 
-
-	
-						</div>
+						</div>					
 				</div>
+				
 				{% if is_paginated %}
-    
+	
 					{% if page_obj.has_previous %}
 					<a class="btn btn-outline-info mb-4" href = "?page=1">First</a>
 					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.previous_page_number }}">Previous</a>
@@ -180,12 +184,16 @@
 					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.next_page_number}}">Next</a>
 					<a class="btn btn-outline-info mb-4" href = "?page={{ page_obj.paginator.num_pages }}">Last</a>
 					{% endif %}
-
+					
 				{% endif %}
+						<a href="{% url 'download' %}" class="btn btn-3">Download</a> 				 			  
 
 			</div>
-		</div>
+				
 
+			
+		</div>
+					
         <!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 		<script  src="{% static 'analytics/vendor/jquery/jquery-3.2.1.min.js' %}"></script>

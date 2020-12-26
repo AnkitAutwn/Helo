@@ -1,0 +1,6 @@
+django
+imutils
+face_recognition
+opencv-python
+djangorestframework
+numpy

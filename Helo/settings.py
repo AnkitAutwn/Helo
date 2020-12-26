@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'users',
     'crispy_forms',
     'analytics',
+    'recognise',
+    'rest_framework',
 
 ]
 
@@ -127,6 +129,9 @@ MEDIA_URL = '/media/'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_REDIRECT_URL = 'analytics-home'
 LOGIN_URL = 'login'
+
+DATA_UPLOAD_MAX_NUMBER_FIELDS = 5242880
+DATA_UPLOAD_MAX_MEMORY_SIZE = 5242880
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
