@@ -5,9 +5,11 @@ import pickle
 import cv2
 import os
 import json
+import pathlib
 
 def encode(urls,name):
-    with open(r'recognise\encodings.pickle','rb') as input:
+    abspath = pathlib.Path('media/encodings.pickle').absolute()
+    with open(abspath,'rb') as input:
             data = pickle.load(input)
 
     knownEncodings = data["encodings"]
@@ -32,6 +34,6 @@ def encode(urls,name):
 
     #print(data)
 
-    f = open(r'recognise\encodings.pickle', "wb")
+    f = open(abspath, "wb")
     f.write(pickle.dumps(data))
     f.close()

@@ -107,6 +107,7 @@ def upload(request):
             img_obj = form.instance
             print(img_obj.file.url[1:])
             image = cv2.imread(img_obj.file.url[1:])
+            #image = image.resize((300,300))
             name = recognize(image)
             if name!=[]:
                 img_obj.name=name[0]
