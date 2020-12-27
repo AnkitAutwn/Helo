@@ -2,10 +2,11 @@ import face_recognition
 import argparse
 import pickle
 import cv2
-
+import pathlib
 
 def recognize(testimg):
-	with open('media\encodings.pickle','rb') as input:
+	abspath = pathlib.Path('media\encodings.pickle').absolute()
+	with open(abspath,'rb') as input:
 		data = pickle.load(input)
 
 	image = testimg
