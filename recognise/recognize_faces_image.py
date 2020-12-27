@@ -5,7 +5,7 @@ import cv2
 import pathlib
 
 def recognize(testimg):
-	abspath = pathlib.Path('media\encodings.pickle').absolute()
+	abspath = pathlib.Path('media/encodings.pickle').absolute()
 	with open(abspath,'rb') as input:
 		data = pickle.load(input)
 
