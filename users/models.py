@@ -33,6 +33,66 @@ class Profile(models.Model):
             img.thumbnail(output_size)
             img.save(self.image.path)
 
+        img1 = Image.open(self.Image1.path)
+        if img1.height > 480 or img1.width > 480:
+            output_size = (480,480)
+            img1.thumbnail(output_size)
+            img1.save(self.Image1.path)
+
+        img2 = Image.open(self.Image2.path)
+        if img2.height > 480 or img2.width > 480:
+            output_size = (480,480)
+            img2.thumbnail(output_size)
+            img2.save(self.Image2.path)
+
+        img3 = Image.open(self.Image3.path)
+        if img3.height > 480 or img3.width > 480:
+            output_size = (480,480)
+            img3.thumbnail(output_size)
+            img3.save(self.Image3.path)
+
+        img4 = Image.open(self.Image4.path)
+        if img4.height > 480 or img4.width > 480:
+            output_size = (480,480)
+            img4.thumbnail(output_size)
+            img4.save(self.Image4.path)
+
+        img5 = Image.open(self.Image5.path)
+        if img5.height > 480 or img5.width > 480:
+            output_size = (480,480)
+            img5.thumbnail(output_size)
+            img5.save(self.Image5.path)
+
+        img6 = Image.open(self.Image6.path)
+        if img6.height > 480 or img6.width > 480:
+            output_size = (480,480)
+            img6.thumbnail(output_size)
+            img6.save(self.Image6.path)
+
+        img7 = Image.open(self.Image7.path)
+        if img7.height > 480 or img7.width > 480:
+            output_size = (480,480)
+            img7.thumbnail(output_size)
+            img7.save(self.Image7.path)
+
+        img8 = Image.open(self.Image8.path)
+        if img8.height > 480 or img8.width > 480:
+            output_size = (480,480)
+            img8.thumbnail(output_size)
+            img8.save(self.Image8.path)
+
+        img9 = Image.open(self.Image9.path)
+        if img9.height > 480 or img9.width > 480:
+            output_size = (480,480)
+            img9.thumbnail(output_size)
+            img9.save(self.Image9.path)
+
+        img10 = Image.open(self.Image10.path)
+        if img10.height > 480 or img10.width > 480:
+            output_size = (480,480)
+            img10.thumbnail(output_size)
+            img10.save(self.Image10.path)
+
 class verification(models.Model):
     Status = (
         ('P','Pending'),
